@@ -1,0 +1,146 @@
+0:00:00.460,0:00:02.592
+Welcome back to Computer Vision.
+
+0:00:02.592,0:00:05.497
+This lesson is going to start[br]a whole unit on motion.
+
+0:00:05.497,0:00:08.747
+Now, in the real world,[br]things really move, you know,
+
+0:00:08.747,0:00:12.290
+wind trees blow in the wind,[br]boats move along the water.
+
+0:00:12.290,0:00:15.952
+A baseball player swings his bat and[br]typically misses if he wi,
+
+0:00:15.952,0:00:17.410
+if he plays for the Mets.
+
+0:00:18.810,0:00:20.470
+But, you know,[br]things are moving all the time and
+
+0:00:20.470,0:00:22.850
+our perception system handles them.
+
+0:00:24.110,0:00:28.610
+In Computer Vision, we also want to deal[br]with motion, but what's kind of cool is,
+
+0:00:28.610,0:00:30.636
+actually, nothing is moving.
+
+0:00:30.636,0:00:33.797
+What you're seeing here is[br]a repeated GIF image, and I've,
+
+0:00:33.797,0:00:36.338
+I've made it sort of[br]coarsely sampled actually,
+
+0:00:36.338,0:00:39.233
+it's from some slides stolen[br]from some folks listed below.
+
+0:00:39.233,0:00:45.680
+So that you can see that it's[br]actually a sequence of static frames.
+
+0:00:45.680,0:00:47.830
+Okay?[br]And, you know, of course,
+
+0:00:47.830,0:00:50.820
+the issue is that when we look[br]at them when they're not so
+
+0:00:50.820,0:00:55.060
+separated in time by quite so[br]much we see this nice motion.
+
+0:00:55.060,0:01:00.160
+And what we would like is, that the same[br]perception of motion that we have,
+
+0:01:00.160,0:01:01.398
+we'd like to be able give the machine.
+
+0:01:01.398,0:01:04.319
+We'd like a machine to be able[br]to understand the notion of
+
+0:01:04.319,0:01:06.000
+motion, if you will.
+
+0:01:06.000,0:01:08.060
+So, when we're going to[br]talk about motion.
+
+0:01:09.820,0:01:12.150
+Here, we're going to start[br]talking about video.
+
+0:01:12.150,0:01:15.800
+Now, really, we're just thinking[br]about a sequence of frames.
+
+0:01:15.800,0:01:18.580
+And, in fact, a long time ago, we used[br]to just called them sequences because
+
+0:01:18.580,0:01:20.760
+a camera would go and then a camera[br]would take another picture.
+
+0:01:20.760,0:01:23.120
+And then, some time later, would take[br]another picture, another picture.
+
+0:01:23.120,0:01:24.853
+And the question was, how to use those.
+
+0:01:24.853,0:01:29.690
+These days, of course, much more[br]ubiquitous, is a notion of video where
+
+0:01:29.690,0:01:34.153
+a sequence is captured over time,[br]usually, relatively quickly.
+
+0:01:34.153,0:01:39.810
+So things can't change a whole lot[br]from one sequence sample to the next.
+
+0:01:39.810,0:01:43.710
+And usually taken at regular intervals,[br]whether it's every 30 hertz, 60 hertz,
+
+0:01:43.710,0:01:47.420
+24 hertz, the idea is that[br]it's at regular intervals.
+
+0:01:47.420,0:01:51.540
+Now, our image is no longer[br]a function of just space, x and y.
+
+0:01:51.540,0:01:55.500
+But our image is a function of space x,[br]y, and time, t.
+
+0:01:55.500,0:01:59.280
+So our signal is I of x, y, and t.
+
+0:01:59.280,0:02:00.780
+But as I said before,
+
+0:02:00.780,0:02:05.100
+sometimes when we describe them as[br]three dimensional function like this.
+
+0:02:05.100,0:02:07.804
+We tend to think of the, all three[br]dimensions as being the same, but
+
+0:02:07.804,0:02:08.930
+they're not.
+
+0:02:08.930,0:02:11.380
+Space is quite different than time, so,
+
+0:02:11.380,0:02:16.630
+if I wearing a nice checkered shirt[br]instead of this gorgeous green.
+
+0:02:16.630,0:02:20.620
+As I moved in space, you would[br]see pixels changing very quickly
+
+0:02:20.620,0:02:22.710
+in terms of their[br]intensity of their color.
+
+0:02:22.710,0:02:25.520
+But, if I were to change[br]the pixels that quickly in time,
+
+0:02:25.520,0:02:28.410
+you would essentially see a mess,[br]you would see all this flickering and
+
+0:02:28.410,0:02:29.980
+things changing very rapidly.
+
+0:02:29.980,0:02:35.830
+So in general, even thought we think of[br]these as a three dimensional function,
+
+0:02:35.830,0:02:38.940
+remember that time and space are[br]different in terms of their statistics
